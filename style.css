@@ -1,0 +1,70 @@
+* {
+    font-family:Helvetica, sans-serif;
+    /* font-size:large */
+}
+
+h1 {font-size: xx-large;}
+
+code {font-family: 'Courier New', Courier, monospace;}
+
+
+body{
+    padding-left: 2rem;
+    background-color: #33333f;
+}
+
+.title{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.code {
+    padding:.25rem .5rem;
+    background-color: dimgray;
+    border-radius: 80px;
+}
+
+input[type=file]::file-selector-button{
+    border: none;
+    border-radius: 10px;
+    background-color: olive ;
+    padding: .5rem;
+    color: white; 
+}
+
+#dropzone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    width: 24rem;
+    height: 12rem;
+    border-style: dashed;
+    color: white;
+    padding: .5rem;
+    margin-top: 3rem;
+    border-radius: 10px;
+}
+
+#file {
+    border: solid 1px;
+    border-radius: 20px;
+    padding: .8rem;
+    max-width: min-content;
+    cursor: pointer;
+}
+
+p,h1,code,button{
+color: whitesmoke
+}
+
+.wrapper {
+    display: flex;
+    gap: .5rem;
+}
+
+#copy {
+    fill: white;
+}
