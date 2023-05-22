@@ -35,14 +35,14 @@ function createDownloadable(string, lastModified) {
 }
 
 function parseBookmarks (object) {
-    if (object.type === 'folder') {
+    if (object.type === 'url') {
+        bookmarks++
+        parsedString += `<DT><A HREF="${object.url}" ADD_DATE="${Math.floor((object.date_added / 1000000) - 11644473600)}">${object.name}</A>\n`
+    } else if (object.type === 'folder') {
         folders++
         parsedString += `<DT><H3 ADD_DATE="${Math.floor((object.date_added / 1000000) - 11644473600)}" LAST_MODIFIED="${Math.floor((object.date_modified / 1000000) - 11644473600)}"` +
             `${object.name === 'Bookmarks bar' ? `PERSONAL_TOOLBAR_FOLDER="true"` : ''}>${object.name}</H3>\n<DL><p>\n`
         object.children.forEach(parseBookmarks)
-    } else {
-        bookmarks++
-        parsedString += `<DT><A HREF="${object.url}" ADD_DATE="${Math.floor((object.date_added / 1000000) - 11644473600)}">${object.name}</A>\n`
     }
     if (object.type === 'folder') parsedString += `</DL><p>\n`
 }
@@ -51,13 +51,14 @@ function processFiles(files) {
     for (let i = 0; i < files.length; i++) {
         let lastModified = new Date (files[i].lastModified)
         files[i].text().then(text => {
-            parseBookmarks(JSON.parse(text).roots.bookmark_bar)
+            const roots = JSON.parse(text).roots
+            Object.keys(roots).forEach(i => parseBookmarks(roots[i]))
+            // parseBookmarks(JSON.parse(text).roots)
             createDownloadable(DOCTYPE + parsedString + `</DL><p>`, lastModified)
             parsedString = ''
             bookmarks = 0
             folders = 0
-        })
-            .catch((err) => console.log(err))
+        }).catch((err) => console.log(err))
     }
 }
 
