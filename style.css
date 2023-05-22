@@ -7,15 +7,29 @@ body{
     font-family:Helvetica, sans-serif;
 }
 
+.title{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
 code {
     font-family: 'Courier New', Courier, monospace;
     font-size: 15px;
 }
 
-.title{
+svg {
+    min-width: fit-content;
+}
+
+.wrapper {
+    white-space: nowrap;
     display: flex;
-    align-items: center;
     gap: .5rem;
+}
+
+.wrapper svg:hover path{
+    fill: #9b0!important;
 }
 
 .code {
@@ -23,6 +37,7 @@ code {
     background-color: dimgray;
     border-radius: 80px;
 }
+
 .fadeIn {
     animation: fade 300ms ease-in;
 }
@@ -30,10 +45,6 @@ code {
 @keyframes fade {
     0% {opacity: 0;}
     100% {opacity: 1;}
-}
-
-svg {
-    min-width: fit-content;
 }
 
 #dropzone {
@@ -61,12 +72,6 @@ svg {
 #dropzone.dragingOver {
     border-color: #9b0;
     box-shadow: 0px 0px 32px 8px #9b02 inset;
-}
-
-.wrapper {
-    white-space: nowrap;
-    display: flex;
-    gap: .5rem;
 }
 
 .downloads {
