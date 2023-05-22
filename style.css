@@ -52,6 +52,7 @@ code {
 }
 
 .wrapper {
+    white-space: nowrap;
     display: flex;
     gap: .5rem;
 }
