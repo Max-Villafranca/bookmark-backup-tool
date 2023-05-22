@@ -78,3 +78,12 @@ dropzone.addEventListener('dragleave', e => {
 document.querySelector('#file').addEventListener('change', e => {
     processFiles(e.target.files)
 })
+const path = document.querySelector('.code>code')
+document.querySelector('.wrapper svg').addEventListener('click', () => {
+    navigator.clipboard.writeText(path.textContent)
+    path.classList.add('fadeIn')
+})
+path.addEventListener('animationend', ()=>{
+    path.classList.remove('fadeIn')
+
+})
