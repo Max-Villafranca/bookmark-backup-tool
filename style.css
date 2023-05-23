@@ -67,6 +67,8 @@ svg {
 
 #dropzone>* {pointer-events: none}
 
+#dropzone:hover {border-color: #9b0;}
+
 #file {display: none}
 
 #dropzone.dragingOver {
@@ -92,7 +94,6 @@ svg {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    /* cursor: pointer; */
     background-color: #fff2;
     border-radius: 10px;
     padding: .4rem .8rem;
@@ -108,4 +109,8 @@ a {
 
 a:visited path {
     fill: gray !important;
+}
+
+.invalidFile{
+    color: darkred;
 }

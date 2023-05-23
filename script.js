@@ -16,10 +16,18 @@ let bookmarks = 0
 let folders = 0
 
 function createDownloadable(string, lastModified) {
-    const fileName = lastModified.toLocaleDateString([],{day:'2-digit', month:'2-digit',year:'2-digit'})
-    const time = lastModified.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit'})
+    const downloads = document.querySelector('.downloads')
     const downloadable = document.createElement('div')
     const count = document.createElement('span')
+    if (string==='ERROR') {
+        count.innerText = 'Invalid file! Please try again.'
+        downloadable.appendChild(count)
+        downloads.appendChild(downloadable)
+        downloadable.classList.add('downloadable','invalidFile')
+        return
+    }
+    const fileName = lastModified.toLocaleDateString([],{day:'2-digit', month:'2-digit',year:'2-digit'})
+    const time = lastModified.toLocaleTimeString([],{hour:'2-digit', minute:'2-digit'})
     const modified = document.createElement('span')
     const a = document.createElement('a')
     downloadable.classList.add('downloadable')
@@ -31,7 +39,7 @@ function createDownloadable(string, lastModified) {
     downloadable.appendChild(count)
     downloadable.appendChild(a)
     a.innerHTML = DOWNLOAD_ARROW
-    document.querySelector('.downloads').appendChild(downloadable)
+    downloads.appendChild(downloadable)
 }
 
 function parseBookmarks (object) {
@@ -59,7 +67,7 @@ function processFiles(files) {
             parsedString = ''
             bookmarks = 0
             folders = 0
-        }).catch((err) => console.log(err))
+        }).catch(() => createDownloadable('ERROR', null))
     }
 }
 
