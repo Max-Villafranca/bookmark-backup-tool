@@ -52,8 +52,9 @@ function processFiles(files) {
         let lastModified = new Date (files[i].lastModified)
         files[i].text().then(text => {
             const roots = JSON.parse(text).roots
-            Object.keys(roots).forEach(i => parseBookmarks(roots[i]))
-            // parseBookmarks(JSON.parse(text).roots)
+            Object.keys(roots).forEach(i => {
+                if (roots[i].children.length>0) parseBookmarks(roots[i])
+            })
             createDownloadable(DOCTYPE + parsedString + `</DL><p>`, lastModified)
             parsedString = ''
             bookmarks = 0
